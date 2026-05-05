@@ -36,12 +36,13 @@ plt.savefig("aktiemarked.png", dpi=150)
 plt.show()
 
 # Udskriv konkrete afkasttal
-afkast_dk  = ((omxc25.iloc[-1] / omxc25.iloc[0]) - 1) * 100
-afkast_usa = ((sp500.iloc[-1]  / sp500.iloc[0])  - 1) * 100
+afkast_dk  = (float(omxc25.iloc[-1].squeeze()) / float(omxc25.iloc[0].squeeze()) - 1) * 100
+afkast_usa = (float(sp500.iloc[-1].squeeze())  / float(sp500.iloc[0].squeeze())  - 1) * 100
+
 print(f"\nAfkast siden januar 2024:")
-print(f"  OMX Copenhagen 25: {float(afkast_dk):.1f}%")
-print(f"  S&P 500:           {float(afkast_usa):.1f}%")
+print(f"  OMX Copenhagen 25: {afkast_dk:.1f}%")
+print(f"  S&P 500:           {afkast_usa:.1f}%")
 if afkast_usa > afkast_dk:
-    print(f"\n  S&P 500 har outperformet OMX C25 med {float(afkast_usa - afkast_dk):.1f} procentpoint")
+    print(f"\n  S&P 500 har outperformet OMX C25 med {afkast_usa - afkast_dk:.1f} procentpoint")
 else:
-    print(f"\n  OMX C25 har outperformet S&P 500 med {float(afkast_dk - afkast_usa):.1f} procentpoint")
+    print(f"\n  OMX C25 har outperformet S&P 500 med {afkast_dk - afkast_usa:.1f} procentpoint")
